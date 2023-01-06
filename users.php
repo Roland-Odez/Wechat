@@ -22,14 +22,16 @@
                 $user = $statement->fetch(PDO::FETCH_ASSOC);
 
                 ?>
-                <div class="content">
+                <a href="./profile.php?unique_id=<?php echo $_SESSION["unique_id"] ?>" class="content">
                     <img src="./upload/<?php echo $user["profile_pic"] ?>" alt="<?php echo $user["fName"] ?>">
                     <div class="details">
                         <span><?php echo ucfirst($user["fName"]) . " " . ucfirst($user["lName"]) ?></span>
-                        <p class="online"><?php echo ($user["status"]) ? "online" : "offline" ?></p>
+                        <p class="online"><?php echo $user["about"] ?></p>
                     </div>
+                </a>
+                <div class="options">
+                    <a href="./php/logout.php" class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                 </div>
-                <a href="./php/logout.php" class="logout">Logout</a>
             </header>
             <div class="search">
                 <span class="text">Select a user to start chat</span>

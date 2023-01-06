@@ -18,7 +18,7 @@
             <form action="#" enctype="application/x-www-form-urlencoded">
                 <div class="avatar">
                     <div class="profile-pic">
-                        <img src="./upload/unknown.jpg" alt="profile-pic">
+                        <img src="" alt="img">
                         <input type="file" class="file" name="profile_pic" id="file-input" hidden>
                         <label class="label" for="file-input"><i class="fa-solid fa-plus"></i></label>
                     </div>

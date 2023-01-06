@@ -41,7 +41,7 @@ body {
     color: #00a884;
 }
 
-.form form .avatar {
+:is(.form, .profile) form .avatar {
     width: 100%;
     display: flex;
     align-items: center;
@@ -50,37 +50,45 @@ body {
     margin: 30px 0px;
 }
 
-.form form .avatar .profile-pic {
-    width: 50%;
-    height: 100%;
+:is(.form, .profile) form .avatar .profile-pic {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 5px solid #00a884;
+    /* border: 5px solid #00a884; */
     margin: 7px;
+    background-image: url("./upload/unknown.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
 }
 
-.form form .profile-pic img {
+:is(.form, .profile) form .profile-pic img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: inline-block;
-
+    z-index: 2;
 }
 
-.form form .profile-pic label {
+:is(.form, .profile) form .profile-pic label {
     color: #00a884;
+    color: rgb(30, 50, 70);
+        /* color: #f7f7f7c4; */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    bottom: 25%;
-    font-size: 15px;
-    right: -80%;
-    width: 25px;
-    height: 25px;
+    bottom: 35%;
+        font-size: 20px;
+        right: -75%;
+        width: 50px;
+        height: 50px;
     background: rgb(30, 50, 70);
+    background-color: #00a884;
     border-radius: 50%;
-    border: 3px solid #00a884;
+    border: 5px solid #00a884;
 }
 
 .form form {
@@ -194,10 +202,24 @@ form .name-details .field:last-child {
     border-radius: 50%;
 }
 
+
 .users header .content img {
     height: 60px;
     width: 60px;
+}
 
+.wrapper header .options {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper header div i {
+    color: #f7f7f7c2;
+    font-size: 23px;
+    margin-left: 15px;
+    cursor: pointer;
 }
 
 :is(.users, .users-list) .details {
@@ -210,11 +232,16 @@ form .name-details .field:last-child {
     font-weight: 500;
 }
 
-.users header .logout {
-    background-color: #00a884;
-    color: #fff;
-    padding: 7px 15px;
-    border-radius: 5px;
+.users header .logout i {
+    color: #f7f7f7c2;
+    padding: 10px;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
 
 .users .search {
@@ -379,7 +406,8 @@ form .name-details .field:last-child {
     color: #f7f7f7;
 }
 
-.chat-area header a {
+.chat-area,
+header a {
     justify-self: start;
     color: #f7f7f7;
     font-size: 20px;
@@ -404,7 +432,6 @@ form .name-details .field:last-child {
 
 .users header .content p.online {
     font-size: .85rem;
-    color: #00a884;
 }
 
 
@@ -510,4 +537,143 @@ div.incoming+div.outgoing {
     color: #fff;
     font-size: 30px;
     cursor: pointer;
+}
+/* profile */
+.profile form {
+    padding: 0px 25px;
+}
+
+.wrapper.success {
+    border: 3px solid #00a884;
+    box-shadow: 3px 1px 43px -5px #00a884c2;
+    -webkit-box-shadow: 3px 1px 43px -5px #00a884c2;
+    -moz-box-shadow: 3px 1px 43px -5px #00a884c2;
+    transition: all .5s ease-in-out;
+}
+
+.wrapper.error {
+    border: 3px solid #da5964e1;
+    box-shadow: 3px 1px 60px -5px #da5964;
+    -webkit-box-shadow: 3px 1px 60px -5px #da5964;
+    -moz-box-shadow: 3px 1px 60px -5px #da5964;
+    transition: box-shadow 1s ease-in-out;
+}
+
+.profile header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 20px;
+    width: 150px;
+    justify-content: space-between;
+}
+
+.profile header a i {
+    color: #f7f7f7c2;
+}
+
+.profile header p {
+    color: #f7f7f7dc;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+}
+
+.profile form {
+    min-height: 600px;
+}
+
+.profile form .input-field {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile form .input-field div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgb(137, 155, 173);
+}
+
+.profile form .input-field span i {
+    color: rgb(137, 155, 173);
+    font-size: 1.2rem;
+    padding-top: 5px;
+}
+
+.profile form .input-field span.icon i {
+    color: #00a884;
+    cursor: pointer;
+}
+
+.profile form .input-field div input,
+.profile form .input-field div input:focus {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #f7f7f7;
+    padding: 3px 0px 5px 0px;
+    padding-left: 5px;
+    margin: 5px 0px;
+    border-bottom: 1px solid transparent;
+}
+
+.profile form .input-field div input:read-write {
+    border-color: rgb(137, 155, 173);
+    transition: all .8s;
+}
+
+.profile form .input-field div p {
+    line-height: 13px;
+    padding-left: 5px;
+}
+
+.profile form .input-field span i.fa-circle-info {
+    color: rgb(30, 50, 70);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(137, 155, 173);
+    border-radius: 50%;
+    border: 1px solid rgb(137, 155, 173);
+    width: 20px;
+    height: 20px;
+}
+
+.profile form .update {
+    width: 100%;
+    margin: 50px 0px auto;
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile form .update button {
+    border: none;
+    outline: none;
+    padding: 20px;
+    background-color: #00a884;
+    color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile form .update button i {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
 }

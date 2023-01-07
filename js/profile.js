@@ -1,7 +1,10 @@
+// queried element 
 const pen = document.querySelectorAll(".input-field span.icon"),
     form = document.querySelector(".profile form"),
     wrapper = document.querySelector(".wrapper"),
     inputs = document.querySelectorAll(".input-field input");
+
+    // to change inputs readonly property 
 pen.forEach((p) => {
     p.addEventListener("click", (e) => {
         document.querySelector(".profile form .update").style.visibility = "visible"
@@ -25,6 +28,7 @@ pen.forEach((p) => {
     })
 })
 
+// update new profile details to sever
 form.onsubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(form);
@@ -41,6 +45,7 @@ form.onsubmit = async (e) => {
     } else {
         wrapper.classList.add("error")
     }
+    // removing error effect after 3s
     setTimeout(() => {
         if (wrapper.classList.contains("success")) {
             wrapper.classList.remove("success")

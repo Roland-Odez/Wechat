@@ -7,7 +7,7 @@ include "../functions/update_status.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-
+// check of email and password input is empty
 if (!empty($_POST["email"]) && !empty($_POST["password"])) {
 
     $email = validate($_POST["email"]);

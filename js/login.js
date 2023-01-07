@@ -1,4 +1,4 @@
-
+// queried element for login
 const hidePassword = document.querySelector('.hide-password'),
     form = document.querySelector(".login form"),
     continueBtn = document.querySelector(".button input"),
@@ -9,6 +9,7 @@ form.onsubmit = (e) => {
 
 }
 
+// sending login details 
 continueBtn.onclick = async (e) => {
     const formData = new FormData(form)
     let error = false;

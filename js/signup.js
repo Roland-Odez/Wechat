@@ -1,4 +1,4 @@
-
+// queried element for signup
 const hidePassword = document.querySelector('.hide-password'),
     form = document.querySelector(".signup form"),
     continueBtn = document.querySelector(".button input"),
@@ -10,6 +10,7 @@ form.onsubmit = (e) => {
 
 }
 
+// signup user
 continueBtn.onclick = async (e) => {
     const formData = new FormData(form)
     let error = false;

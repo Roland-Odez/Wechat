@@ -6,7 +6,7 @@ include "../functions/form-validation.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-
+// check if form inputs is empty
 if (!empty($_POST["fName"]) && !empty($_POST["lName"]) && !empty($_POST["email"]) && !empty($_POST["password"])) {
     $fName = validate($_POST["fName"]);
     $lName = validate($_POST["lName"]);
@@ -24,6 +24,7 @@ if (!empty($_POST["fName"]) && !empty($_POST["lName"]) && !empty($_POST["email"]
 
             $statement = $pdo->prepare($sql);
 
+            // set default image if user do not upload image on signup
             if (empty($file_name)) {
                 $file_name = "unknown.png";
             }

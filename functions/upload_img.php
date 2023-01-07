@@ -12,7 +12,7 @@ function upload_img($img)
         return false;
     } else {
         $val_type = ["jpg", "jpeg", "png", "gif"];
-        if (in_array($imageFileType, $val_type)) {
+        if (in_array($imageFileType, $val_type)) { // check if img is supported
             if (!move_uploaded_file($img["tmp_name"], $targetDir . $file_name)) {
                 http_response_code(400);
                 echo json_encode(["message" => "Sorry there was an error uploading your file"]);

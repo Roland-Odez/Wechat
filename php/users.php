@@ -13,21 +13,22 @@ $data = json_decode($json, true);
 
 $output = "";
 
-if (!empty($data)) {
+if (!empty($data)) { // check if incoming data from from search bar is empty
 
-    $unique_id = $_SESSION["unique_id"];
+    $unique_id = $_SESSION["unique_id"]; // user unique_id
 
-    $pattern = '%' . $data['searchBar'] . '%';
+    $pattern = '%' . $data['searchBar'] . '%'; // user search pattern
 
-    $result = search_users($pattern, $unique_id, $pdo);
+    $result = search_users($pattern, $unique_id, $pdo); // search's for users that match the pattern
 
     foreach ($result as $user) {
 
-        if ($user["status"]) {
+        if ($user["status"]) { // check if searched user is online
 
             $fName = ucfirst($user["fName"]);
             $lName = ucfirst($user["lName"]);
 
+            // add online notification
             $output .= "
     
                     <a href='./chat.php?unique_id={$user["unique_id"]}'>
@@ -42,6 +43,7 @@ if (!empty($data)) {
             
                     ";
         } else {
+            // remove online notification
             $output .= "
     
                     <a href='./chat.php?unique_id={$user["unique_id"]}'>
@@ -59,5 +61,3 @@ if (!empty($data)) {
 
     echo json_encode(["result" => $output]);
 }
-
-// print_r($data["searchBar"]);

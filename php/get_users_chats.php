@@ -6,9 +6,8 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 $unique_id = $_SESSION["unique_id"];
-// $unique_id = "63a1b35716ab1";
 
-$sql = "SELECT * FROM users WHERE unique_id <> :unique_id";
+$sql = "SELECT * FROM users WHERE unique_id <> :unique_id"; // gets all user excluding the sender
 
 $stm = $pdo->prepare($sql);
 
@@ -20,6 +19,7 @@ $output = "";
 
 for ($i = 0; $i < count($result1); $i++) {
 
+    // getting the last message of a chat
     $sql2 = "SELECT * FROM messages
              WHERE (incoming_id = :incoming_id  OR outgoing_id = :incoming_id) 
              AND (outgoing_id = :outgoing_id OR incoming_id = :outgoing_id)
@@ -34,19 +34,23 @@ for ($i = 0; $i < count($result1); $i++) {
 
     $message = "";
 
+    // get number of unread reciever messages
     $unread_msg = get_unread_nums($result1[$i]["unique_id"], $unique_id, $pdo);
 
     if (!empty($result)) {
 
+        // determining reciever and sender message
         if ($result[0]["incoming_id"] === $unique_id) {
             $message = $result[0]["message"];
         } else {
             $message = "you: {$result[0]["message"]}";
         }
 
+        // determining if read for reciever and setting read for sender
         $read = ($result[0]["is_read"]) ? "read" : "offline";
         $read = ($result[0]["outgoing_id"] === $unique_id) ? "read" : $read;
 
+        // checking users status if online or offline
         if ($result1[$i]["status"]) {
             $fName = ucfirst($result1[$i]["fName"]);
             $lName = ucfirst($result1[$i]["lName"]);

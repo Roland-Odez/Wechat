@@ -33,6 +33,12 @@
             </header>
             <div class="chat-box">
             </div>
+            <p class="down"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
+                </svg>
+            </p>
             <form action="#" method="POST" class="typing-area">
                 <input type="hidden" name="incoming_id" value="<?php echo $user['unique_id'] ?>">
                 <input type="hidden" name="outgoing_id" value="<?php echo $_SESSION['unique_id'] ?>">
@@ -40,14 +46,7 @@
                 <button><i class="fab fa-telegram-plane"></i></button>
             </form>
         </section>
-        <script>
-        const chat_box = document.querySelector(".chat-area .chat-box");
-        chat_box.scrollTo(0, chat_box.scrollHeight);
-        </script>
         <script src="./js/chat.js"></script>
-        <script>
-        chat_box.scrollTo(0, chat_box.scrollHeight);
-        </script>
 </body>
 
 </html>

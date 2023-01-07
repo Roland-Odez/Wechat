@@ -1,3 +1,4 @@
+// search for users on search bar
 searchBar.onkeyup = async (e) => {
     usersList.classList.add("active")
     const fetchData = await fetch("./php/users.php", {
@@ -11,7 +12,7 @@ searchBar.onkeyup = async (e) => {
 
 }
 
-
+// get users chats when not searching for users in search bar
 if (!searchBar.value.length) {
     setInterval(async () => {
         if (!usersList.classList.contains("active")) {
@@ -20,7 +21,6 @@ if (!searchBar.value.length) {
             })
             const data = await fetchData.json()
             usersList.innerHTML = data.result;
-            console.log(data)
         }
     }, 300)
 }

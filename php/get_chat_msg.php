@@ -17,6 +17,9 @@ $result = get_messages($pdo, $data['incoming_id'], $data['outgoing_id']);
 
 $output = " ";
 
+// making first previous user message to outgoing sender to avoid error on first check of previous user message
+$previousUserMessage["outgoing_id"] = $_SESSION["unique_id"];
+
 foreach ($result as $user) {
 
     // check if user is reciever or sender
@@ -24,25 +27,39 @@ foreach ($result as $user) {
 
         $output .= "
         
-                <div class='chat outgoing'>
-                    <div class='details'>
-                        <p>{$user["message"]}</p>
-                    </div>
-                </div>
-
-                    ";
+        <div class='chat outgoing'>
+            <div class='details'>
+                <p>{$user["message"]}</p>
+            </div>
+        </div>
+        
+        ";
+    } else if ($previousUserMessage["outgoing_id"] !== $unique_id
+    ) {
+        $output .= "
+        
+        <div class='chat incoming'>
+            <img style='visibility: hidden;' src='./upload/{$user["profile_pic"]}' alt='{$user["fName"]}'>
+            <div class='details'>
+                <p>{$user["message"]}</p>
+            </div>
+        </div>
+        
+        ";
     } else {
         $output .= "
-            
-                <div class='chat incoming'>
-                    <img src='./upload/{$user["profile_pic"]}' alt='{$user["fName"]}'>
-                    <div class='details'>
-                        <p>{$user["message"]}</p>
-                    </div>
-                </div>
-            
-                    ";
+        
+        <div class='chat incoming'>
+            <img src='./upload/{$user["profile_pic"]}' alt='{$user["fName"]}'>
+            <div class='details'>
+                <p>{$user["message"]}</p>
+            </div>
+        </div>
+        
+        ";
     }
+    // set previous user message
+    $previousUserMessage["outgoing_id"] = $user["outgoing_id"];
 }
 
 // reciever read's all unread sender messages
